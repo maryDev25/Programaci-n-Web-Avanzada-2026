@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil Profesional</title>
+
+  <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/CSS/style.css">
+
+</head>
+
+<body>
+
+<nav>
+  <div><strong>SoftCode</strong></div>
+  <ul>
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#redes">Redes</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <button class="theme-btn" onclick="toggleTheme()">🌙</button>
+</nav>
+
+<header id="inicio">
+  <h1 class="texto">Desarrolladora de Sistemas</h1>
+  <p class="texto">Especializada en desarrollo backend con Java, APIs REST y bases de datos relacionales. Construyo soluciones escalables, mantenibles y orientadas a negocio.</p>
+</header>
+
+<section id="proyectos">
+  <h2>Proyectos</h2>
+  <div class="projects">
+    <div class="card">
+      <h3>Sistema de Ventas en Java</h3>
+      <p>Aplicación desarrollada con Java y Spring Boot para la gestión de ventas, inventario y facturación. Incluye control de stock y reportes.</p>
+    </div>
+    <div class="card">
+      <h3>Sistema de Veterinaria</h3>
+      <p>Plataforma para gestión de pacientes, historial clínico y turnos. Implementa base de datos MySQL y arquitectura MVC.</p>
+    </div>
+    <div class="card">
+      <h3>Sistema de Control de Solicitudes</h3>
+      <p>Aplicación web para gestión de solicitudes internas, seguimiento de estados y notificaciones automatizadas.</p>
+    </div>
+  </div>
+</section>
+
+<section id="redes">
+  <h2 style="text-align:center">Redes Profesionales</h2>
+  <p style="text-align:center">Puedes encontrar más información sobre mi trabajo y proyectos en las siguientes plataformas:</p>
+  <div class="social">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+  </div>
+</section>
+
+<section id="contacto">
+  <h2>Contacto</h2>
+  <p>¿Interesado en trabajar conmigo o desarrollar un proyecto? Completa el siguiente formulario:</p>
+  <form>
+    <input type="text" placeholder="Nombre completo" required>
+    <input type="email" placeholder="Correo electrónico" required>
+    <textarea rows="4" placeholder="Escribe tu mensaje..."></textarea>
+    <button class="submit-btn" type="submit">Enviar mensaje</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2026 Mary Cabral - Todos los derechos reservados</p>
+</footer>
+
+<button class="voice-btn" onclick="startVoice()"><i class="fas fa-microphone"></i></button>
+
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle('dark');
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+  }
+
+  // Cargar tema guardado
+  (function() {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') document.body.classList.add('dark');
+  })();
+
+  function startVoice() {
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'es-ES';
+
+    recognition.start();
+
+    recognition.onresult = function(event) {
+      const command = event.results[0][0].transcript.toLowerCase();
+
+      if (command.includes('inicio')) location.href = '#inicio';
+      if (command.includes('proyectos')) location.href = '#proyectos';
+      if (command.includes('redes')) location.href = '#redes';
+      if (command.includes('contacto')) location.href = '#contacto';
+    }
+  }
+</script>
+
+</body>
+</html>
+
